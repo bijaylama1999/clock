@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+#include<stdlib.h>
+struct time {
+    int h=0;
+    int m=0;
+    int s=00;
+};
+int main()
+{
+    SYSTEMTIME stime;
+    GetSystemTime(&stime);
+    FILE *time;
+    time=fopen("clock.txt","w");
+    if(time==NULL)
+	{
+		printf("File cannot be create to reading and writing");
+	}
+	else
+	{
+    struct time newtime ;
+    printf("Enter time in format of HH(Hour) MM(Minute) SS(Second): ");
+    scanf("%d%d%d",&newtime.h,&newtime.m,&newtime.s);
+    start:;
+    for(newtime.h;newtime.h<24;newtime.h++)
+    {
+        for(newtime.h;newtime.h<60;newtime.h++)
+        {
+            for(newtime.s;newtime.s<60;newtime.s++)
+            {
+                system("cls");
+                printf("\n\n\n\n\n\n\t\t\t\t\t==========================================\n");
+                printf("\t\t\t\t\t||\t\t\t\t\t||\n");
+                printf("\t\t\t\t\t||\t\t\t\t\t||\n");
+                printf("\t\t\t\t\t||\tTODAY'S TIME: %d:%d:%d ",newtime.h,newtime.m,newtime.s);
+                fprintf(time,"\t\t\t\t\t||\tTODAY'S TIME: %d:%d:%d ",newtime.m);
+
+                if(newtime.h<12)
+                {
+                    printf("A.M.\t||\n");
+                }
+                else
+                {
+                    printf("P.M.\t||\n");
+                }
+                printf("\t\t\t\t\t||\t\t\t\t\t||\n");
+                fprintf(time,"\t\t\t\t\t||\tTODAY'S DATE: %d / %d / %d\t||\n",stime.wDay,stime.wMonth,stime.wYear);
+                printf("\t\t\t\t\t||\tTODAY'S DATE: %d / %d / %d\t||\n",stime.wDay,stime.wMonth,stime.wYear);
+                printf("\t\t\t\t\t||\t\t\t\t\t||\n");
+                printf("\t\t\t\t\t==========================================");
+                    for(double i=0;i<89999900;i++)
+                    {
+                        i++;
+                        i--;
+                    }
+            }
+            newtime.s=0;
+        }
+        newtime.m=0;
+    }
+    goto start;
+    //file handiling, restructure code,array,file structure
+    fprintf(time,"TODAY'S TIME: %d:%d:%d ",newtime.h,newtime.m,newtime.s);
+    //fprintf(time,"\t\t\t\t\t||\tTODAY'S TIME: %d:%d:%d ",newtime.h,newtime.m,newtime.s);
+}
+}
